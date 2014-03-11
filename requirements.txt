@@ -1,0 +1,12 @@
+flask==0.10.1
+flask_mongoengine==0.7.0
+flask-security
+flask-principal
+python-bcrypt
+pil
+dougrain
+Flask-OAuthlib
+
+#Libraries for testing
+behave
+Flask-Testing
