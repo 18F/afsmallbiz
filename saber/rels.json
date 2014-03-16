@@ -60,29 +60,6 @@
                 "format": "date-type"
             }
         }
-    },
-    "organization": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "id": "http://www.something.gov/rels/organization",
-        "title": "Organization",
-        "description": "A hierarchical collection of datasets who share communications about items",
-        "type": "object",
-        "properties": {
-            "created": {
-                "title": "Created At",
-                "description": "Timestamp when created",
-                "type": "string",
-                "format": "date-time"
-            },
-            "modified": {
-                "title": "Modified At",
-                "description": "Timestamp when last modified",
-                "type": "string",
-                "format": "date-type"
-            }
-
-        }
-
     }
 }
 

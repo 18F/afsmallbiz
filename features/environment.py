@@ -46,7 +46,7 @@ class FlaskTestClientProxy(object):
 
 
 def before_scenario(context, feature):
-    from sbir import create_app
+    from saber import create_app
     app = create_app(BehaveConfig)
     app.wsgi_app = FlaskTestClientProxy(app.wsgi_app)
     context.app = app

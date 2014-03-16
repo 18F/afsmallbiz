@@ -1,8 +1,9 @@
-import "peer_mysql"
-import "peer_python"
+import "saber_mongodb"
+import "saber_python"
+import "saber_apache"
 
 node "devel" {
-  user {'peer':
+  user {'saber':
     groups => ['sudo'],
     ensure => present,
     shell => '/bin/false',  #prevent user from logging in?
@@ -29,13 +30,8 @@ node "devel" {
     timezone => 'UTC',
   }
 
-  include peer_python
-  include peer_mysql
+  include saber_apache
+  include saber_python
+  include saber_mongodb
 
-
-#  exec { 'start':
-#    command   => "/home/vagrant/forever start app.js",
-#    cwd       => "/vagrant",
-#    unless    => "ps -ef | grep '[f]orever'"
-#  }
 }

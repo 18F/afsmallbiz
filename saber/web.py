@@ -11,17 +11,6 @@ __credits__ = ['Dave Caraway']
 
 log = logging.getLogger(__name__)
 
-#TODO refactor this function out of code
-# def load_rels():
-#     pwd = os.path.abspath(os.path.dirname(__file__))
-#     file_path = os.path.join(pwd, 'rels.json')
-#
-#     with open(file_path, 'r') as f:
-#         return json.loads(f.read())
-#     return {}
-#
-# relations = load_rels()
-
 api = Blueprint('api', __name__)
 
 @api.route('/', methods=['GET'])
@@ -34,12 +23,10 @@ def index():
 
     b = Builder(request.url).add_curie('ep', '/rel/{rel}')\
         .add_link('ep:user', url_for('.list_users'))\
-        .add_link('ep:dataset', url_for('.list_datasets'))\
-        .add_link('ep:organization', url_for('.list_orgs'))\
         .add_link('ep:schema', url_for('.list_all_schema'))
     o = b.as_object()
 
-    return Response(json.dumps(o), mimetype='application/hal+json')
+    return Response(json.dumps(o), mimetype='application/json')
 
 # ------------------- DATASETS --------------------------------------
 
@@ -64,7 +51,7 @@ def list_datasets():
 
     o = b.as_object()
 
-    return Response(json.dumps(o), mimetype='application/hal+json')
+    return Response(json.dumps(o), mimetype='application/json')
 
 @api.route('/datasets', methods=['POST'])
 def create_dataset():
@@ -112,7 +99,7 @@ def get_dataset(id):
     d.add_link('ds:organization', url_for('.get_org', id=dataset.organization.id))
     d.add_link('ds:created_by', url_for('.get_user', id=dataset.created_by.id))
 
-    return Response(json.dumps(d.as_object()), mimetype='application/hal+json')
+    return Response(json.dumps(d.as_object()), mimetype='application/json')
 
 @api.route('/datasets/<id>', methods=['PUT'])
 def update_dataset(id):
@@ -171,7 +158,7 @@ def list_users():
 
     o = b.as_object()
 
-    return Response(json.dumps(o), mimetype='application/hal+json')
+    return Response(json.dumps(o), mimetype='application/json')
 
 @api.route('/users', methods=['POST'])
 def create_user():
@@ -217,7 +204,7 @@ def get_user(id):
     d.add_link('home', url_for('.index'))
     d.add_link('us:users', url_for('.list_users'))
 
-    return Response(json.dumps(d.as_object()), mimetype='application/hal+json')
+    return Response(json.dumps(d.as_object()), mimetype='application/json')
 
 @api.route('/users/<id>', methods=['PUT'])
 def update_user(id):
@@ -279,7 +266,7 @@ def list_orgs():
 
     o = b.as_object()
 
-    return Response(json.dumps(o), mimetype='application/hal+json')
+    return Response(json.dumps(o), mimetype='application/json')
 
 @api.route('/organizations', methods=['POST'])
 def create_org():
@@ -316,7 +303,7 @@ def get_org(id):
     d.add_link('home', url_for('.index'))
     d.add_link('og:organization', url_for('.list_orgs'))
 
-    return Response(json.dumps(d.as_object()), mimetype='application/hal+json')
+    return Response(json.dumps(d.as_object()), mimetype='application/json')
 
 @api.route('/organizations/<id>', methods=['PUT'])
 def update_org(id):

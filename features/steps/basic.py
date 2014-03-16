@@ -12,8 +12,6 @@ logger = logging.getLogger(__name__)
 
 resource = dict()
 resource['root'] = '/'
-resource['organization'] = '/organizations'
-resource['dataset'] = '/datasets'
 resource['user'] = '/users'
 resource['schema'] = '/schema'
 
@@ -61,17 +59,6 @@ def create_users(context):
                 password=enc_password,
                 display_name=row['display_name'])
 
-
-@given(u'the following organizations exist')
-def create_organizations(context):
-    from sbir.model import Organization
-    app = context.app
-    with app.app_context():
-        for row in context.table:
-            Organization(title=row['title'], description=row['description']).save()
-
-
-
 @when(u"I get the '{resource}' resource")
 def get_resource(context, resource=None):
     url = get_url(resource)
@@ -93,7 +80,6 @@ def count_links(context, num_links, rel_uri):
     doc = Document.from_object(json.loads(context.page.data))
     link = doc.links.get(rel_uri, None)
     assert link, 'Resource link not found: %s'% rel_uri
-    assert num_links == link.
 
     assert actual_url, "Resource 'ep:%s' not found in links %s" % (resource, doc.links.keys())
     assert expected_url == actual_url, "actual url [%s] does not match expected url [%s]" % (actual_url, expected_url)

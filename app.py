@@ -1,4 +1,4 @@
-from sbir import create_app
+from saber import create_app
 
 __author__ = 'dwcaraway'
 

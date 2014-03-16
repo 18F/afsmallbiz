@@ -5,5 +5,7 @@ forge "http://forge.puppetlabs.com"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/apt"
 mod "stankevich/python"
-mod "puppetlabs/mysql"
+mod 'mongodb', :git => 'https://github.com/puphpet/puppetlabs-mongodb.git'
+mod "wget", :git => "git://github.com/maestrodev/puppet-wget.git"
+mod 'apache', :git => 'https://github.com/puphpet/puppetlabs-apache.git'
 mod "saz/timezone"
