@@ -8,8 +8,7 @@ class saber_python {
       gunicorn   => true,
     }
 
-   python::requirements { '/vagrant/requirements.txt':
-    }
+   python::requirements { '/vagrant/requirements.txt': }
 
     python::gunicorn { 'vhost':
       ensure      => present,

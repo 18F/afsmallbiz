@@ -5,7 +5,8 @@ flask-principal
 python-bcrypt
 pil
 dougrain
-Flask-OAuthlib
+#Flask-OAuthlib
+Flask-Mime
 
 #Libraries for testing
 behave

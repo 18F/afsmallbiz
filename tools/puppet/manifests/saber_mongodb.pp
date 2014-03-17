@@ -1,4 +1,8 @@
 #Install mongodb
 class saber_mongodb {
-  #TODO
+  class { 'mongodb::globals':
+  manage_package_repo => true
+  } ->
+
+  class { '::mongodb': }
 }
